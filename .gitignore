@@ -19,3 +19,5 @@ build
 /*.conf
 
 */lib/remoto
+/nbproject
+ceph.log

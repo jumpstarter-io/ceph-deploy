@@ -18,6 +18,25 @@ def platform_information():
         major_version = release.split('.')[0]
         codename = debian_codenames.get(major_version, '')
 
+        # In order to support newer jessie/sid or wheezy/sid strings we test this
+        # if sid is buried in the minor, we should use sid anyway.
+        if not codename and '/' in release:
+            major, minor = release.split('/')
+            if minor == 'sid':
+                codename = minor
+            else:
+                codename = major
+
+    #elif codename == "" and release == "" and codename == "":
+        """ could be ArchLinux, lets check """
+    if os.path.exists('/etc/arch-release'):
+        """ ArchLinux detected """
+        return (
+            "Arch Linux",
+            "release",
+            "arch"
+        )
+
     return (
         str(distro).rstrip(),
         str(release).rstrip(),
