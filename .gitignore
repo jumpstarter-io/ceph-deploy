@@ -20,3 +20,7 @@ build
 
 */lib/vendor/remoto
 remoto
+*/lib/remoto
+/nbproject
+ceph.log
+
