@@ -1,5 +1,50 @@
 from ceph_deploy.lib import remoto
 
+def pacman(conn, packages, *a, **kw):
+    if isinstance(packages, str):
+        packages = [packages]
+    cmd = [
+        'pacman',
+        '--noconfirm',
+        '--needed',
+        '-S'
+    ]
+    cmd.extend(packages)
+    return process.run(
+        conn,
+        cmd,
+        *a,
+        **kw
+    )
+    
+    
+def pacman_remove(conn, packages, *a, **kw):
+    if isinstance(packages, str):
+        packages = [packages]
+    cmd = [
+        'pacman',
+        '-R',
+        '--noconfirm'
+    ]
+    cmd.extend(packages)
+    return process.run(
+        conn,
+        cmd,
+        *a,
+        **kw
+    )
+    
+    
+def pacman_update(conn):
+    cmd = [
+        'pacman',
+        '-Syy'
+    ]
+    return process.run(
+        conn,
+        cmd,
+    )
+
 
 def apt(conn, packages, *a, **kw):
     if isinstance(packages, str):

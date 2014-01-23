@@ -6,7 +6,7 @@ on the type of distribution/version we are dealing with.
 """
 import logging
 from ceph_deploy import exc
-from ceph_deploy.hosts import debian, centos, fedora, suse, remotes
+from ceph_deploy.hosts import debian, centos, fedora, suse, arch, remotes
 from ceph_deploy.connection import get_connection
 
 logger = logging.getLogger()
@@ -59,6 +59,7 @@ def get(hostname, username=None, fallback=None, detect_sudo=True):
     module.conn = conn
     module.machine_type = machine_type
     module.init = module.choose_init()
+    module.init = _choose_init(distro_name, codename)
     return module
 
 
@@ -75,6 +76,7 @@ def _get_distro(distro, fallback=None):
         'redhat': centos,
         'fedora': fedora,
         'suse': suse,
+        'arch linux': arch
         }
 
     return distributions.get(distro) or _get_distro(fallback)
