@@ -56,7 +56,7 @@ def vendor_library(name, version):
     if not path.exists(vendor_dest):
         run(['git', 'clone', 'https://github.com/jumpstarter-io/%s' % name])
         os.chdir(vendor_src)
-        run(['git', 'checkout', version])
+        #run(['git', 'checkout', version])
         run(['mv', vendor_module, vendor_dest])
     os.chdir(current_dir)
 
