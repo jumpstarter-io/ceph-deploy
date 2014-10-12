@@ -1,5 +1,5 @@
 from ceph_deploy.hosts import common
-from ceph_deploy.lib.remoto import process
+from ceph_deploy.lib.vendor.remoto import process
 
 
 def create(distro, args, monitor_keyring):

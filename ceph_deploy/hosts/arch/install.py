@@ -1,5 +1,5 @@
 from ceph_deploy.util import pkg_managers, templates
-from ceph_deploy.lib.remoto import process
+from ceph_deploy.lib.vendor.remoto import process
 
 def install(distro, version_kind, version, adjust_repos):
     process.run(
